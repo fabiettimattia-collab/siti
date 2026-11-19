@@ -1,0 +1,170 @@
+/* Scena delle pizze guidata dallo scroll. Il menu resta sotto e nel link «Vai al menu».
+   Tutto il movimento usa solo transform e opacity; i valori arrivano da pizza-experience.js. */
+:root{--pizza-header:100px}
+.header{height:var(--pizza-header);position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid #292a2110}
+.header-cta{transition:opacity .35s,visibility .35s,background .2s,transform .2s}
+.on-hero .header-cta{opacity:0;visibility:hidden}
+
+/* Altezza: una schermata per la prima pizza più un tratto di scroll per ogni cambio (--pizza-steps = pizze - 1, lo scrive anche il JS). */
+.pizza-journey{--pizza-steps:5;position:relative;height:calc(100svh + var(--pizza-steps)*88svh);background:#f1e7d0}
+.pizza-stage{--pizza-accent:#a63121;--pz-size:min(52vw,calc((100svh - var(--pizza-header))*.84),820px);--pill-space:0px;--cx:69%;--cy:46%;position:sticky;top:var(--pizza-header);height:calc(100svh - var(--pizza-header));min-height:540px;isolation:isolate;overflow:hidden;background:#f1e7d0;color:var(--ink)}
+.pizza-stage[data-flavour="1"]{--pizza-accent:#3c522d}
+.pizza-stage[data-flavour="2"]{--pizza-accent:#963d24}
+.pizza-stage[data-flavour="3"]{--pizza-accent:#7a4d06}
+.pizza-stage[data-flavour="4"]{--pizza-accent:#991b30}
+.pizza-stage[data-flavour="5"]{--pizza-accent:#2b4a36}
+
+/* Fondo: una macchia di colore per ogni pizza dopo la prima, che si allarga da sotto la pizza; luce morbida e grana. */
+.stage-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.stage-bg i{position:absolute;left:var(--cx);top:var(--cy);width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;transform:scale(0);will-change:transform}
+.stage-bg i:nth-child(1){background:radial-gradient(closest-side,#dce3c6 78%,#dce3c600)}
+.stage-bg i:nth-child(2){background:radial-gradient(closest-side,#edcbb6 78%,#edcbb600)}
+.stage-bg i:nth-child(3){background:radial-gradient(closest-side,#f1dfa6 78%,#f1dfa600)}
+.stage-bg i:nth-child(4){background:radial-gradient(closest-side,#f2c4c2 78%,#f2c4c200)}
+.stage-bg i:nth-child(5){background:radial-gradient(closest-side,#cddbcf 78%,#cddbcf00)}
+.stage-light{position:absolute;inset:0;background:radial-gradient(closest-side at var(--cx) var(--cy),#fffdf6c9 0,#fffdf66e 38%,#fffdf600 100%),radial-gradient(130% 120% at 46% 38%,#4a2a1200 52%,#4a2a1226 100%)}
+.stage-grain{position:absolute;inset:0;opacity:.55;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .1 0 0 0 .55 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.journey-backword{position:absolute;left:0;right:0;bottom:calc(9% + var(--pill-space));display:flex;justify-content:center;font:700 clamp(150px,21vw,400px)/.85 var(--serif);letter-spacing:-.065em;color:var(--pizza-accent);opacity:.085;white-space:nowrap;pointer-events:none;transition:color .5s;will-change:transform}
+.journey-backword span{display:inline-block;will-change:transform,opacity}
+
+.pizza-stage-inner{position:absolute;inset:0 0 calc(64px + var(--pill-space));max-width:1440px;margin:auto;display:grid;grid-template-columns:42% 58%;align-items:center;padding:0 64px}
+.journey-copy{position:relative;z-index:4;pointer-events:none;container-type:inline-size}
+.journey-copy button{pointer-events:auto}
+.journey-copy>*,.journey-details>*{will-change:transform,opacity}
+.journey-kicker{font-size:10px;letter-spacing:.18em;font-weight:750;color:var(--pizza-accent);margin-bottom:22px;transition:color .4s}
+/* --name-fit: con nomi lunghi (Carbonara 2.0, La Partenopea) il titolo si rimpicciolisce per stare nella colonna.
+   2.05 = 1 / larghezza media di una lettera in Fraunces 650 (0,467 em, misurata), con un margine del 4%. */
+.journey-details h2{--name-fit:calc(100cqw*2.05/var(--name-chars,11));font-size:min(clamp(50px,5.6vw,84px),var(--name-fit));font-weight:650;line-height:1.03;color:var(--pizza-accent);letter-spacing:-.065em;white-space:nowrap;transition:color .4s}
+.journey-details h2 span{font-style:italic}
+.journey-line{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.2vw,31px);line-height:1.3;letter-spacing:-.025em;margin-top:18px}
+.journey-ingredients{font-size:13px;line-height:1.8;max-width:360px;color:#4f5145;min-height:71px;margin-top:17px!important}
+.journey-actions{display:flex;align-items:center;gap:24px;margin-top:24px}
+.journey-add{background:var(--pizza-accent);border-color:var(--pizza-accent);border-radius:100px;gap:17px;padding:17px 26px;font-size:14px;box-shadow:0 14px 30px -12px var(--pizza-accent);transition:background .3s,border-color .3s,transform .2s,box-shadow .3s}
+.journey-add:hover{background:var(--ink);border-color:var(--ink)}
+.journey-add>span:last-child{font-size:23px;font-weight:400;line-height:1}
+.journey-add #pizza-price{font-weight:450;border-left:1px solid #ffffff60;padding-left:15px}
+.journey-note{font-size:11px;color:#656756;margin-top:20px}
+
+/* La pizza: ombra a terra, inclinazione in prospettiva, disco che ruota (e gira piano quando è ferma), luce fissa. */
+.pizza-scene{position:relative;align-self:stretch;touch-action:pan-y;cursor:grab;outline-offset:-10px;-webkit-user-select:none;user-select:none}
+.pizza-scene.is-dragging{cursor:grabbing}
+.pizza-scene:focus-visible{outline:2px solid var(--pizza-accent);outline-offset:-6px;border-radius:28px}
+.pizza-wheel{position:absolute;left:50%;top:50%;width:0;height:0;z-index:1;pointer-events:none}
+.pz{position:absolute;left:calc(var(--pz-size)/-2);top:calc(var(--pz-size)/-2);width:var(--pz-size);height:var(--pz-size);will-change:transform;pointer-events:none}
+.pz[aria-hidden="true"]{visibility:hidden}
+.is-live .pz{visibility:hidden}
+.pz img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.pz-tilt,.pz-disc,.pz-spin,.pz-ground{position:absolute;inset:0}
+.pz-disc{will-change:transform}
+/* Giro lento quando la pizza è posata: in pausa resta all'angolo raggiunto, così non scatta quando riparte. */
+.pz-spin{animation:pz-spin 110s linear infinite;animation-play-state:paused}
+.is-settled .pz[aria-hidden="false"] .pz-spin{animation-play-state:running}
+.pz-shadow{position:absolute;inset:1.5%;border-radius:50%;background:radial-gradient(closest-side,#2e1505bf 60%,#2e150566 82%,#2e150500);filter:blur(calc(var(--pz-size)*.032));will-change:transform,opacity}
+.pz-light,.pz-shade{position:absolute;inset:1%;border-radius:50%;pointer-events:none;-webkit-mask-image:radial-gradient(closest-side,#000 78%,#0000 97%);mask-image:radial-gradient(closest-side,#000 78%,#0000 97%);will-change:transform}
+.pz-light{background:radial-gradient(circle at 30% 22%,#fff 0,#fff0 48%);mix-blend-mode:soft-light;opacity:.8}
+.pz-shade{background:radial-gradient(circle at 76% 84%,#2b1204 0,#2b120400 54%);mix-blend-mode:multiply;opacity:.34}
+
+/* Vapore e farina: elementi già sfocati che si muovono solo con transform e opacity. */
+.pizza-steam,.pizza-dust{position:absolute;left:50%;top:50%;width:var(--pz-size);height:var(--pz-size);margin:calc(var(--pz-size)/-2) 0 0 calc(var(--pz-size)/-2);pointer-events:none}
+.pizza-steam{z-index:3;opacity:0;transition:opacity 1.1s}
+.is-settled .pizza-steam{opacity:1}
+.pizza-steam i{position:absolute;left:var(--x);top:var(--y);width:24%;height:42%;border-radius:50%;background:radial-gradient(closest-side,#ffffffd9,#ffffff59 46%,#fff0 76%);filter:blur(calc(var(--pz-size)*.02));opacity:0;animation:steam var(--t) linear infinite;animation-delay:var(--d)}
+.pizza-dust{z-index:2;will-change:transform}
+.pizza-dust i{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);margin:calc(var(--s)/-2);border-radius:50%;background:var(--c,#fffaf0);box-shadow:0 1px 2px #60401e59;opacity:0}
+.pizza-dust i.mote{animation:mote var(--t) ease-in-out infinite;animation-delay:var(--d)}
+.pizza-dust i.soft{filter:blur(2px);box-shadow:none}
+
+/* Ingredienti scritti vicino alla pizza e la frase con il suo tratto verso la pizza: compaiono quando la pizza si è posata. */
+.pizza-tag{position:absolute;z-index:4;font-size:11px;line-height:1.35;letter-spacing:.02em;color:var(--pizza-accent);pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s,color .4s}
+.pizza-tag b{display:block;font:italic 600 21px/1.15 var(--serif);letter-spacing:-.03em;white-space:nowrap}
+.pizza-tag:before{content:'';position:absolute;width:54px;height:1px;background:currentColor;opacity:.6;transform:scaleX(0);transition:transform .3s}
+.pizza-tag:after{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:currentColor}
+.tag-one{left:calc(50% + var(--pz-size)*.335);top:calc(50% - var(--pz-size)*.5);text-align:left}
+.tag-one:before{right:calc(100% + 10px);top:60%;transform-origin:right;rotate:-32deg}
+.tag-one:after{right:calc(100% + 54px);top:calc(60% + 13px)}
+.tag-two{left:calc(50% + var(--pz-size)*.36);top:calc(50% + var(--pz-size)*.4);text-align:left}
+.tag-two:before{right:calc(100% + 10px);top:28%;transform-origin:right;rotate:28deg}
+.tag-two:after{right:calc(100% + 55px);top:calc(28% - 16px)}
+.is-settled .pizza-tag{opacity:1;transform:none;transition:opacity .7s .35s,transform .9s .35s cubic-bezier(.2,.8,.2,1),color .4s}
+.is-settled .tag-two{transition-delay:.55s,.55s,0s}
+.is-settled .pizza-tag:before{transform:scaleX(1);transition:transform .7s .75s cubic-bezier(.2,.8,.2,1)}
+.pizza-bite{position:absolute;z-index:5;left:calc(50% - var(--pz-size)*.753);top:calc(50% + var(--pz-size)*.42);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:750;color:var(--pizza-accent);white-space:nowrap;pointer-events:none;opacity:0;transform:translate(14px,-8px) rotate(-7deg);transition:opacity .3s,transform .3s,color .4s}
+.pizza-bite i{font:italic 600 22px/1 var(--serif);letter-spacing:-.03em;text-transform:none;margin:0 2px 0 5px}
+.pizza-bite b{font-size:17px;font-weight:400}
+.is-settled .pizza-bite{opacity:1;transform:rotate(-7deg);transition:opacity .7s .95s,transform .9s .95s cubic-bezier(.2,.8,.2,1),color .4s}
+.pizza-bite svg{position:absolute;left:calc(100% + 4px);bottom:6px;width:100px;height:92px;overflow:visible;stroke-width:1.1}
+.pizza-bite path{stroke-dasharray:160;stroke-dashoffset:160;opacity:.65;transition:stroke-dashoffset .3s}
+.pizza-bite circle{fill:currentColor;stroke:none;transform:scale(0);transform-box:fill-box;transform-origin:center;transition:transform .2s}
+.is-settled .pizza-bite path{stroke-dashoffset:0;transition:stroke-dashoffset .8s 1.35s cubic-bezier(.4,0,.2,1)}
+.is-settled .pizza-bite circle{transform:none;transition:transform .35s 2s cubic-bezier(.2,.9,.3,1.4)}
+
+/* Riga in fondo: indicatore discreto, invito a scorrere, note di servizio. */
+.journey-bottom{position:absolute;left:max(64px,calc((100% - 1312px)/2));right:max(64px,calc((100% - 1312px)/2));bottom:calc(20px + var(--pill-space));z-index:5;display:flex;align-items:center;gap:26px;color:#5d5f50}
+.pizza-picker{display:flex;align-items:center;gap:6px}
+.pizza-picker-count{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--pizza-accent);min-width:17px;transition:color .4s}
+.pizza-picker-count:last-child{color:inherit;opacity:.6;text-align:right}
+.pizza-picker button{display:flex;align-items:center;width:38px;height:28px;padding:0;border:0;background:none}
+.pizza-picker-track{position:relative;display:block;width:100%;height:2px;border-radius:2px;background:#292a2126;overflow:hidden;transition:height .2s}
+.pizza-picker-track i{position:absolute;inset:0;background:var(--pizza-accent);transform:scaleX(0);transform-origin:left;transition:background-color .4s}
+.pizza-picker button.is-active .pizza-picker-track i{transform:scaleX(1)}
+.pizza-picker button:hover .pizza-picker-track{height:4px}
+.journey-cue{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:650;margin:0}
+.journey-cue>span{display:inline-block;font-size:14px;line-height:1;margin-right:6px;vertical-align:-1px;animation:scroll-nudge 2s ease-in-out infinite}
+.journey-fineprint{margin:0 0 0 auto;font-size:10px;color:#6f705f;display:flex;gap:7px;align-items:center}
+.journey-fineprint button{border:0;padding:6px 0;background:none;font-size:10px;color:inherit;text-decoration:underline;text-underline-offset:3px}
+.journey-fineprint button:hover{color:var(--ink)}
+
+/* La pizza che vola nella scelta quando si preme «La scelgo». */
+.pizza-fly{position:fixed;z-index:70;pointer-events:none;border-radius:50%;box-shadow:0 30px 50px -26px #2e1505a6;will-change:transform,opacity}
+.pizza-fly img{position:absolute;inset:0;width:100%;height:100%}
+
+@keyframes pz-spin{to{transform:rotate(360deg)}}
+@keyframes steam{0%{opacity:0;transform:translate3d(0,14%,0) scale(.55,.6) rotate(0)}20%{opacity:.8}62%{opacity:.4}100%{opacity:0;transform:translate3d(var(--dx),-88%,0) scale(1.55,1.9) rotate(var(--r))}}
+@keyframes mote{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) scale(.6)}25%{opacity:var(--o,.9)}75%{opacity:var(--o,.9)}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) scale(1)}}
+@keyframes scroll-nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+
+@media(max-width:1100px) and (min-width:761px){.pizza-stage{--pz-size:min(54vw,calc((100svh - var(--pizza-header))*.78),700px)}.pizza-stage-inner{padding-inline:36px;grid-template-columns:44% 56%}.journey-details h2{font-size:min(6.3vw,var(--name-fit))}.journey-line{font-size:23px}.journey-ingredients{max-width:300px;font-size:12px}.journey-bottom{left:36px;right:36px}.pizza-tag b{font-size:18px}.pizza-bite{display:none}}
+@media(max-width:760px){
+  :root{--pizza-header:76px}html{scroll-padding-top:90px}.header{height:var(--pizza-header);position:sticky;padding-inline:22px}.header .wordmark{font-size:34px}.header .wordmark small{font-size:5.5px;margin-top:9px}.header nav{top:68px}
+  .pizza-journey{height:calc(100svh + var(--pizza-steps)*80svh)}
+  .pizza-stage{--pz-size:min(96vw,460px,calc((100svh - var(--pizza-header))*.64));min-height:460px}
+  .pizza-stage-inner{inset:0 0 calc(62px + var(--pill-space));padding:0 24px;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;align-items:stretch}
+  .pizza-scene{grid-row:1}
+  .pizza-wheel{top:max(50%,calc(100% - var(--pz-size)/2 - 4px))}
+  .pizza-steam,.pizza-dust{top:max(50%,calc(100% - var(--pz-size)/2 - 4px))}
+  .journey-copy{grid-row:2;text-align:center;padding:38px 0 4px}
+  .journey-kicker{font-size:9px;letter-spacing:.16em;margin-bottom:6px}
+  .journey-details h2{font-size:min(clamp(44px,13.4vw,68px),var(--name-fit));line-height:1.04}
+  .journey-line{font-size:19px;margin-top:5px}
+  .journey-ingredients{font-size:12px;line-height:1.5;min-height:0;height:54px;overflow:hidden;max-width:330px;margin:8px auto 0!important}
+  .journey-actions{justify-content:center;margin-top:12px}
+  .journey-add{font-size:13px;padding:14px 22px;gap:14px}.journey-add #pizza-price{padding-left:13px}.journey-add>span:last-child{font-size:21px}
+  .journey-note{display:none}
+  .journey-backword{bottom:auto;top:3%;font-size:34vw;opacity:.075}
+  .pizza-tag{font-size:9px}.pizza-tag b{font-size:15px}.pizza-tag:before{width:26px}
+  .tag-one{left:auto;right:-6px;top:calc(max(50%,100% - var(--pz-size)/2 - 4px) - var(--pz-size)*.5);text-align:right}
+  .tag-one:before{right:calc(100% + 6px);top:74%;rotate:-38deg}.tag-one:after{right:calc(100% + 24px);top:calc(74% + 13px)}
+  .tag-two{left:-6px;top:calc(max(50%,100% - var(--pz-size)/2 - 4px) + var(--pz-size)*.39);text-align:left}
+  .tag-two:before{right:auto;left:calc(100% + 6px);top:20%;transform-origin:left;rotate:-32deg}.tag-two:after{right:auto;left:calc(100% + 25px);top:calc(20% - 12px)}
+  .pizza-bite{display:none}
+  .journey-bottom{left:24px;right:24px;bottom:calc(8px + var(--pill-space));gap:0 14px;flex-wrap:wrap;justify-content:space-between}
+  .journey-cue{font-size:8px;letter-spacing:.12em}.journey-cue>span{font-size:12px;margin-right:4px}
+  .journey-fineprint{font-size:9px;gap:5px;flex-basis:100%;justify-content:center;margin:0}.journey-fineprint button{font-size:9px;padding:4px 0}
+  .pizza-picker{gap:4px}.pizza-picker button{width:20px}
+  .has-selection .pizza-stage{--pill-space:54px}
+}
+@media(max-width:760px) and (max-height:700px){.journey-ingredients{display:none}.journey-copy{padding-top:34px}}
+@media(max-width:760px) and (max-height:600px){.journey-line{display:none}}
+@media(max-width:380px){.journey-cue{display:none}}
+/* Schermi molto bassi: niente sezione bloccata, la scena resta un carosello da trascinare. */
+@media(max-height:600px) and (min-width:761px){.pizza-journey{height:auto}.pizza-stage{position:relative;top:0;height:600px;min-height:0;--pz-size:min(46vw,470px)}}
+@media(max-height:520px) and (max-width:760px){.pizza-journey{height:auto}.pizza-stage{position:relative;top:0;height:640px;min-height:0;--pz-size:min(90vw,330px)}.journey-line{display:block}}
+
+/* Movimento ridotto o in pausa: tutto fermo e leggibile, senza vapore né farina. */
+.motion-paused .pizza-steam,.motion-paused .pizza-dust{display:none}
+.motion-paused .pizza-tag,.motion-paused .pizza-tag:before,.motion-paused .pizza-bite,.motion-paused .journey-backword,.motion-paused .pizza-picker-track i{transition:none}
+.motion-paused .pz-spin,.motion-paused .journey-cue>span{animation:none}
+@media(prefers-reduced-motion:reduce){.pizza-steam,.pizza-dust{display:none}.pz-spin,.journey-cue>span{animation:none!important}}
+.journey-offscreen .pizza-steam i,.journey-offscreen .pizza-dust i,.journey-offscreen .pz[aria-hidden] .pz-spin,.journey-offscreen .journey-cue>span{animation-play-state:paused}
+@media print{.pizza-journey{display:none!important}.header{position:static}}

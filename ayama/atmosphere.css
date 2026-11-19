@@ -1,0 +1,18 @@
+/* A quiet vineyard breeze behind AYAMA's portrait and editorial content. */
+.ay-atmosphere{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict;isolation:isolate;--ay-source-x:50%;--ay-source-y:37%}
+.ay-atmosphere-effects{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;contain:strict;--ay-source-x:50%;--ay-source-y:37%}
+.ay-atmosphere-effects>*{pointer-events:none}
+.ay-atmosphere__base{position:absolute;inset:0;background:#061e18}
+.ay-atmosphere__light{position:absolute;inset:-10%;background:radial-gradient(ellipse 44% 52% at var(--ay-source-x) var(--ay-source-y),#94a96519 0%,#72916409 45%,transparent 78%);opacity:.8;transition:opacity 1.5s}
+.ay-atmosphere__canvas{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ay-atmosphere__vignette{position:absolute;inset:0;background:radial-gradient(ellipse 78% 82% at 50% 46%,transparent 35%,#02100b22 78%,#02100b66 100%)}
+.ay-atmosphere__grain{position:absolute;inset:-5%;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.89' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.7' d='M0 0h160v160H0z'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.ay-atmosphere__flash{position:absolute;inset:0;background:radial-gradient(ellipse at var(--ay-source-x) var(--ay-source-y),#f0dd9c4d,#e9d49024 28%,transparent 62%);opacity:0;mix-blend-mode:screen}
+.ay-atmosphere__sweep{position:absolute;inset:-20%;background:linear-gradient(108deg,transparent 38%,#c4d49b0c 49.5%,#e7d9a318 50%,#c4d49b08 52%,transparent 63%);opacity:0;transform:translateX(-80%);mix-blend-mode:screen}
+.ay-atmosphere--impact .ay-atmosphere__flash{animation:ay-field-flash .7s ease-out both}
+.ay-atmosphere--impact .ay-atmosphere__sweep{animation:ay-field-sweep 1.4s cubic-bezier(.16,.74,.2,1) both}
+.ay-atmosphere--revealed .ay-atmosphere__light{opacity:.45}
+.ay-atmosphere--reduced .ay-atmosphere__canvas,.ay-atmosphere--reduced .ay-atmosphere__sweep,.ay-atmosphere--reduced .ay-atmosphere__flash{display:none}
+@keyframes ay-field-flash{0%{opacity:0}10%{opacity:.62}36%{opacity:.18}100%{opacity:0}}
+@keyframes ay-field-sweep{0%{opacity:0;transform:translateX(-80%)}16%{opacity:.5}85%{opacity:.1}100%{opacity:0;transform:translateX(80%)}}
+@media(prefers-reduced-motion:reduce){.ay-atmosphere *,.ay-atmosphere-effects *{animation:none!important;transition:none!important}}

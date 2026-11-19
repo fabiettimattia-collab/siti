@@ -1,0 +1,123 @@
+/* Layered flight scene: scroll changes altitude, fine pointer adds a gentle bank. */
+.flight-journey{height:185svh;position:relative;background:var(--navy-deep)}
+.flight-journey .opening{position:sticky;top:0;height:100svh;min-height:800px;overflow:clip;isolation:isolate}
+.flight-poster{transition:opacity .45s ease}
+.flight-landscape{position:absolute;inset:-8%;z-index:-5;opacity:0;will-change:transform;overflow:hidden;transform-origin:60% 70%;transition:opacity .45s ease;pointer-events:none}
+.flight-landscape img{width:100%;height:100%;object-fit:cover;object-position:center 42%;animation:landscape-breathe 40s ease-in-out infinite alternate}
+.flight-aircraft{position:absolute;z-index:-3;left:77%;top:54%;width:clamp(410px,48vw,800px);opacity:0;transform:translate(-50%,-50%);transform-origin:center;will-change:transform;transition:opacity .45s ease;pointer-events:none;perspective:1200px}
+.flight-aircraft img{width:100%;height:auto;display:block;pointer-events:none;filter:drop-shadow(0 12px 15px #0c202a15)}
+.aircraft-float{animation:aircraft-cruise 8s ease-in-out infinite;transform-origin:60% 60%}
+.flight-haze{position:absolute;inset:50% -15% -25%;z-index:-2;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 86% 80%,#f0d3aa38 0%,transparent 52%),radial-gradient(ellipse at 45% 100%,#e2c8a531 0%,transparent 58%);filter:blur(16px);will-change:transform}
+.flight-ready .flight-poster{opacity:0}
+.flight-ready .flight-landscape,.flight-ready .flight-aircraft,.flight-ready .flight-haze{opacity:1}
+.flight-journey .hero-shade{z-index:-1;background:linear-gradient(90deg,#112731f5 0%,#112731d9 22%,#11273170 45%,#11273108 75%),linear-gradient(0deg,#10232ce8 0%,transparent 28%,#10232c45 100%)}
+.flight-journey .hero-content{will-change:transform,opacity}
+.flight-journey .header{position:relative;z-index:5}
+.flight-journey .hero-footer{position:absolute;bottom:30px;left:0;right:0;padding-bottom:0;z-index:4}
+.flight-instructions{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:9px!important}
+#flight-hint{font-size:10px;line-height:1.5;letter-spacing:.015em;color:#d0d8d7;font-weight:400}
+.flight-controls{gap:22px!important}
+#flight-motion-toggle{min-height:32px;border:0;border-bottom:1px solid #e4d5b470;background:none;padding:4px 0;color:#e6dac1;font-size:9px;line-height:1.4;transition:color .2s}
+#flight-motion-toggle:hover{color:white}
+.flight-progress{position:absolute;left:80px;right:80px;bottom:0;height:2px;background:#f5f3ec16;z-index:6;pointer-events:none}
+.flight-progress span{display:block;width:100%;height:100%;background:var(--gold);opacity:.7;transform:scaleX(.03);transform-origin:left;will-change:transform}
+.flight-journey.flight-unavailable{height:auto}
+.flight-unavailable .opening{position:relative}
+.flight-unavailable #flight-hint,.flight-unavailable #flight-motion-toggle,.flight-unavailable .flight-progress{display:none}
+.flight-inactive .aircraft-float,.flight-inactive .flight-landscape img{animation-play-state:paused}
+
+@keyframes aircraft-cruise{0%,100%{transform:translate3d(0,0,0) rotate(.3deg)}50%{transform:translate3d(0,-5px,0) rotate(-.4deg)}}
+@keyframes landscape-breathe{from{transform:translate3d(-1.5%,1%,0) scale(1.04)}to{transform:translate3d(2.5%,-1.8%,0) scale(1.09)}}
+@media(min-width:1500px){.flight-journey .hero-content{padding-top:100px}.flight-aircraft{width:48vw;max-width:950px}}
+@media(max-width:1100px){.flight-progress{left:45px;right:45px}.flight-aircraft{left:78%;width:51vw}.flight-controls{gap:15px!important}}
+@media(max-width:800px){
+  .flight-journey{height:170svh}
+  .flight-journey .opening{min-height:780px;height:100svh}
+  .flight-journey .header{height:99px}
+  .flight-journey .hero-content{padding-top:25px;padding-bottom:0}
+  .flight-journey .hero-content h1{font-size:clamp(58px,10.3vw,76px);line-height:.98;margin-top:20px;margin-bottom:180px;max-width:600px}
+  .flight-journey .hero-intro{margin-top:0;font-size:11px;line-height:1.75}
+  .flight-journey .hero-actions{margin-top:22px;gap:25px}
+  .flight-aircraft{left:52%;top:430px;width:96%;max-width:570px}
+  .flight-landscape{inset:-7% -20%}
+  .flight-landscape img{object-position:60% center}
+  .flight-journey .hero-shade{background:linear-gradient(180deg,#10232c99 0%,#10232c60 28%,#10232c08 52%,#10232c90 80%,#10232c 100%),linear-gradient(90deg,#10232c70,transparent 85%)}
+  .flight-journey .hero-footer{bottom:24px;align-items:flex-end;gap:12px}
+  .flight-instructions{max-width:220px;gap:6px!important}.flight-instructions>.micro{font-size:6px!important}
+  #flight-hint{font-size:8px;line-height:1.5;max-width:190px}
+  .flight-controls{gap:10px!important;flex-wrap:wrap;justify-content:flex-end;max-width:160px}
+  .flight-controls>.micro{display:none}
+  #flight-motion-toggle{font-size:8px;min-height:32px}
+  .flight-progress{left:25px;right:25px}
+}
+@media(max-width:420px){
+  .flight-journey .hero-content h1{font-size:60px;margin-bottom:175px}
+  .flight-journey .hero-content{padding-top:22px}
+  .flight-journey .hero-intro{font-size:10px}
+  .flight-journey .hero-actions{gap:21px;margin-top:20px}
+  .flight-aircraft{top:404px;width:97%}
+  .flight-instructions{max-width:180px}
+  #flight-hint{max-width:165px;font-size:7px}
+  .flight-controls{max-width:145px}
+}
+@media(max-width:350px){.flight-journey .hero-content h1{font-size:53px}.flight-journey .hero-content h1{margin-bottom:185px}.flight-instructions>.micro{font-size:5px!important}#flight-motion-toggle{font-size:7px}.flight-controls{gap:7px!important}}
+@media(max-height:900px) and (min-width:801px){
+  .flight-journey .opening{min-height:680px}
+  .flight-journey .hero-content{padding-top:38px;padding-bottom:60px}
+  .flight-journey .hero-content h1{font-size:clamp(72px,6.5vw,94px);line-height:.96;margin-top:20px}
+  .flight-journey .hero-intro{margin-top:24px}
+  .flight-journey .hero-actions{margin-top:24px}
+}
+@media(max-height:680px), (max-width:800px) and (max-height:779px){
+  .flight-journey{height:auto}
+  .flight-journey .opening{position:relative;min-height:800px;height:auto}
+  .flight-journey .hero-content{padding-bottom:145px}
+  .flight-progress{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .flight-journey{height:auto}
+  .flight-journey .opening{position:relative}
+  .flight-journey .hero-content{will-change:auto;transform:none!important;opacity:1!important}
+  .flight-landscape,.flight-aircraft{will-change:auto;transition:none}
+  .aircraft-float,.flight-landscape img{animation:none}
+  .flight-progress{display:none}
+}
+@media print{.flight-journey{display:none!important}}
+
+/* Rotor planes are projected ellipses; the fuselage occludes the rear halves naturally. */
+.aircraft-float{position:relative;animation:none}
+.flight-aircraft img{position:relative;z-index:2}
+.propeller{position:absolute;z-index:1;width:19.5%;aspect-ratio:1;transform:translate(-50%,-50%) rotate(15deg) scaleX(.39);pointer-events:none}
+.propeller-near{left:23.43%;top:53.35%}
+.propeller-far{left:55.64%;top:35.2%;width:16.7%;transform:translate(-50%,-50%) rotate(13deg) scaleX(.37)}
+.propeller-disc,.propeller-blades{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+.propeller-disc{background:radial-gradient(circle,transparent 14%,#aebdc11a 23%,#dfdfcf26 55%,#d4d8ce12 74%,transparent 79%);filter:blur(.8px);transform:scale(1.08)}
+.propeller-blades{background:repeating-conic-gradient(from 18deg,transparent 0deg,#d6e2dc0a 18deg,#d5ded539 34deg,#80949c45 48deg,#c5d0c91f 67deg,transparent 88deg 120deg);mask-image:radial-gradient(circle,transparent 10%,#000 23%,#000 58%,transparent 75%);filter:blur(.6px);animation:propeller-turn .24s linear infinite;will-change:transform}
+.propeller-far .propeller-blades{animation-duration:.27s;animation-delay:-.09s}
+@keyframes propeller-turn{to{transform:rotate(360deg)}}
+.flight-atmosphere{position:absolute;inset:-6%;z-index:-2;opacity:0;pointer-events:none;will-change:transform;transition:opacity .6s ease}
+.flight-ready .flight-atmosphere{opacity:1}
+.flight-cloud{position:absolute;width:120%;max-width:none;height:auto;left:-20%;pointer-events:none;will-change:transform,opacity;filter:blur(1px)}
+.flight-cloud-far{top:39%;opacity:.11;animation:cloud-cross-far 54s linear infinite;animation-delay:-27s}
+.flight-cloud-near{top:61%;opacity:.19;animation:cloud-cross-near 32s linear infinite;animation-delay:-9s}
+@keyframes cloud-cross-near{
+  0%{transform:translate3d(-22%,5%,0) scale(1.05);opacity:0}
+  15%{opacity:.19}75%{opacity:.19}
+  100%{transform:translate3d(30%,-15%,0) scale(1.2);opacity:0}
+}
+@keyframes cloud-cross-far{
+  0%{transform:translate3d(-17%,8%,0) scale(.86);opacity:0}
+  18%{opacity:.11}78%{opacity:.11}
+  100%{transform:translate3d(23%,-8%,0) scale(.96);opacity:0}
+}
+.flight-inactive .flight-cloud,.flight-inactive .propeller-blades{animation-play-state:paused}
+@media(max-width:800px){
+  .flight-cloud{width:190%;left:-45%}
+  .flight-cloud-far{top:38%}
+  .flight-cloud-near{top:55%}
+}
+@media(prefers-reduced-motion:reduce){
+  .propeller-blades{animation:none;will-change:auto;opacity:.35}
+  .flight-cloud{animation:none;will-change:auto}
+  .flight-atmosphere{transition:none;will-change:auto}
+}

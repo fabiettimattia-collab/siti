@@ -1,0 +1,51 @@
+/* One stable scene: the camera, not the canvas box, performs the reveal. */
+.site-header{position:absolute;inset:0 0 auto;z-index:40;height:92px;background:linear-gradient(180deg,#061e18ed,#061e1855,transparent);border:0;color:#eee5cf}
+.site-header .wordmark{color:#fdd64d}.site-header .wordmark span{color:#d8cb9b}
+.site-header .button{background:transparent;border-color:#d5c58b55;color:#eee5cf}.site-header .button:hover{background:#fdd64d;color:#061e18}
+.hero,.hero:not(.is-discovered){height:100svh;min-height:740px;max-height:none;background:#061e18;color:#eee5cf;isolation:isolate;transition:none}
+.hero-topline{top:110px;opacity:.5;z-index:10}.hero-watermark{display:none}
+.hero .mascot-wrap,.hero:not(.is-discovered) .mascot-wrap,.hero.is-discovered .mascot-wrap{position:absolute;inset:0;width:100%;height:100%;transition:none;z-index:4;pointer-events:none}
+.hero #mascot-stage,.hero:not(.is-discovered) #mascot-stage{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto;touch-action:pan-y}
+.mascot-webgl-canvas{display:block;width:100%;height:100%;outline:none}
+.webgl-action{position:absolute;border:0;background:transparent;color:transparent;cursor:grab;touch-action:none;z-index:10;pointer-events:auto}
+.webgl-action:focus-visible{outline:1px solid #fdd64d;outline-offset:6px;border-radius:40%}.webgl-action:active{cursor:grabbing}
+.mascot-caption{top:147px;z-index:12;color:#e8dfbd;transition:opacity .22s}
+.mascot-caption p{font-size:18px}.mascot-caption small{color:#b6b7a3}.caption-line{border-color:#d2bb79}
+.hero.is-opening .mascot-caption,.hero.is-discovered .mascot-caption{opacity:0}
+.hero.is-loading .mascot-caption{opacity:.5}
+.hero-copy{margin-left:8%;padding-top:245px;width:39%;z-index:9;visibility:hidden;opacity:1;transform:none;transition:none;pointer-events:none}
+.hero.is-opening .hero-copy,.hero.is-discovered .hero-copy{visibility:visible;transform:none;opacity:1}
+.hero .eyebrow{color:#cfbc83}.hero .status-dot{background:#fdd64d}.hero h1 em{color:#fdd64d}
+.hero-description{color:#ccd0bf}.hero .text-link{border-color:#d8cc9b66;color:#eee5cf}
+.hero-word{display:inline-block;opacity:0;transform:translateY(26px);filter:blur(10px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1),filter .85s cubic-bezier(.16,1,.3,1);transition-delay:calc(.62s + var(--word-index,0)*.065s)}
+.hero.is-opening .hero-word,.hero.is-discovered .hero-word{opacity:1;transform:none;filter:blur(0)}
+.hero-copy>.eyebrow,.hero-description,.hero-copy>.text-link{opacity:0;transform:translateY(12px);transition:opacity .65s,transform .65s}
+.hero-copy>.eyebrow{transition-delay:.45s}.hero-description{transition-delay:1.08s}.hero-copy>.text-link{transition-delay:1.22s}
+.hero.is-opening .hero-copy>.eyebrow,.hero.is-discovered .hero-copy>.eyebrow,.hero.is-opening .hero-description,.hero.is-discovered .hero-description,.hero.is-opening .hero-copy>.text-link,.hero.is-discovered .hero-copy>.text-link{opacity:1;transform:none}
+.hero-bottom{color:#bfbea8;z-index:14;bottom:26px}.hero .circle-arrow{border-color:#d5c89a55}.hero-coordinates{opacity:0;transition:opacity .5s}.hero.is-discovered .hero-coordinates{opacity:1}
+.hero-skip{position:absolute;z-index:15;bottom:28px;right:4.2%;color:#bfbea8;background:transparent;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:10px}
+.hero.is-opening .hero-skip,.hero.is-discovered .hero-skip{display:none}
+.hero:after{content:'';position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(transparent,#061e18);z-index:3;pointer-events:none}
+.mascot-seal{right:5%;bottom:95px;background:#061e1866;border-color:#d5bf7644;color:#c4b378;opacity:0;transition:opacity .7s 1.5s}
+.hero.is-opening .mascot-seal,.hero.is-discovered .mascot-seal{opacity:1}
+.wild-sign{position:absolute;left:8%;top:155px;z-index:9;padding:9px 19px 12px;border:1px solid #b69e6250;background:#041811aa;border-radius:3px;color:#fdd64d;font:italic 29px/1 Georgia,serif;letter-spacing:-.04em;opacity:0;transform:translateY(-12px) rotate(-2deg);transform-origin:50% -70px;pointer-events:none;transition:opacity .5s 1.65s,transform 1.2s 1.65s;box-shadow:0 0 24px #fdd64d08}
+.wild-sign>span:last-child{position:relative;z-index:2}.wild-sign i{font-weight:normal}.sign-wire{position:absolute;bottom:100%;height:70px;width:1px;background:linear-gradient(#203e2e,#a78e52);opacity:.6}.sign-wire.left{left:15%}.sign-wire.right{right:15%}
+.hero.is-opening .wild-sign,.hero.is-discovered .wild-sign{opacity:1;transform:rotate(-1deg);animation:sign-sway 7s ease-in-out 2.6s infinite}
+.hero.is-opening .wild-sign>span:last-child,.hero.is-discovered .wild-sign>span:last-child{animation:sign-ignite 1.3s ease-out 1.7s both;text-shadow:0 0 2px #fff3bd,0 0 9px #eec05a77,0 0 24px #d8a73833}
+@keyframes sign-ignite{0%,8%,20%,32%,36%{opacity:.24}9%,18%,33%,60%,100%{opacity:1}}@keyframes sign-sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(.6deg)}}
+.webgl-welcome{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;pointer-events:none}
+.mobile-nav{background:#09251d;color:#eee5cf;border-color:#d4bf7c33}
+@media(min-width:1500px){.hero-copy{padding-top:270px}}
+@media(max-width:1050px) and (min-width:761px){.hero-copy{margin-left:6%;width:42%;padding-top:245px}.hero h1{font-size:clamp(62px,7.6vw,84px)}.wild-sign{left:6%}}
+@media(max-width:760px){
+ .site-header{height:82px}.hero,.hero:not(.is-discovered){height:100svh;min-height:640px;max-height:none}
+ .hero.is-opening,.hero.is-discovered{height:1135px;min-height:1135px}
+ .hero .mascot-wrap,.hero:not(.is-discovered) .mascot-wrap,.hero.is-discovered .mascot-wrap{inset:0 0 auto;height:1135px;width:100%}
+ .hero #mascot-stage,.hero:not(.is-discovered) #mascot-stage{inset:0;width:100%;height:1135px}
+ .hero-topline{top:103px;font-size:7px}.mascot-caption{top:150px}.mascot-caption p{font-size:15px}.mascot-caption small{font-size:7px}
+ .hero-copy{margin-left:8%;padding-top:215px;width:84%}.hero h1{font-size:clamp(58px,11.5vw,78px)}.hero-copy .eyebrow{font-size:7px;margin-bottom:20px}.hero-description{margin-top:20px;max-width:260px;font-size:13px}.hero .text-link{margin-top:12px}
+ .wild-sign{top:142px;left:8%;font-size:24px;padding:8px 15px}.sign-wire{height:36px}
+ .hero-bottom{bottom:25px}.hero-bottom .scroll-link span:last-child{font-size:7px}.hero-coordinates{display:none}.hero-skip{bottom:20px;font-size:8px}
+ .mascot-seal{display:none}.hero:after{height:28px}
+}
+@media(prefers-reduced-motion:reduce){.hero-word,.hero-copy>.eyebrow,.hero-description,.hero-copy>.text-link,.wild-sign,.wild-sign>span{transition:none!important;animation:none!important;filter:none!important}.hero.is-discovered .hero-word,.hero.is-discovered .hero-description,.hero.is-discovered .hero-copy>.eyebrow,.hero.is-discovered .hero-copy>.text-link{opacity:1;transform:none}}

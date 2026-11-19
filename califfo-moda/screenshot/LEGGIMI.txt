@@ -1,0 +1,4 @@
+Screenshot del demo non disponibili.
+Il browser Chromium non si è avviato nella sandbox. L'unica alternativa di avvio si è interrotta; non sono stati effettuati ulteriori tentativi.
+Il demo ha superato 15 verifiche della logica JavaScript con DOM simulato. Questi controlli non sostituiscono una prova visiva in browser.
+Quando avrai il PC, apri index.html e acquisisci Home, Donna, Prodotto, Carrello, Checkout e Contatti a 390 × 844 px. I PDF della presentazione e del preventivo sono già disponibili in cliente/.

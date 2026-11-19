@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b63925">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lievit’Amo · Un morso di Napoli, a Palocco</title>
+  <meta name="description" content="Scopri la proposta di sito per Lievit’Amo: pizza napoletana, friggitoria, menu completo e contatti. Via Pindaro 34, Roma.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pizza-experience.css">
+  <link rel="preload" as="image" href="assets/margherita.webp">
+  <script src="menu.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="pizza-experience.js" defer></script>
+</head>
+<body class="on-hero">
+<a class="skip-link" href="#menu">Vai al menu</a>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol><symbol id="phone" viewBox="0 0 24 24"><path d="M8 3H4c-1 0-1 3 0 6 2 6 5 9 11 11 3 1 6 1 6 0v-4l-5-2-2 2c-3-1-5-3-6-6l2-2z"/></symbol><symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol><symbol id="bag" viewBox="0 0 24 24"><path d="M5 7h14l2 14H3L5 7Zm3 1V6a4 4 0 0 1 8 0v2"/></symbol></svg>
+<div class="topline"><span>NAPOLI NELL’ANIMA. PALOCCO A CASA.</span><a href="#dove">Via Pindaro 34, Roma <span aria-hidden="true">↗</span></a></div>
+<header class="header">
+  <a class="wordmark" href="#inizio" aria-label="Lievit’Amo, inizio">lievit<span>’</span>amo<small>PIZZERIA & FRIGGITORIA PARTENOPEA</small></a>
+  <button id="nav-toggle" class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Apri navigazione"><span></span><span></span></button>
+  <nav id="main-nav" aria-label="Navigazione principale"><a href="#anima">La nostra anima</a><a href="#speciali">Le speciali</a><a href="#menu">Il menu</a><a href="#dove">Dove siamo</a></nav>
+  <a class="button button-small header-cta" href="#ordina">Stasera pizza <svg><use href="#arrow"/></svg></a>
+</header>
+<main>
+<section class="pizza-journey" id="inizio" aria-label="Scopri le nostre pizze">
+  <div class="pizza-stage" data-flavour="0" role="region" aria-roledescription="carosello" aria-label="Sei pizze da scoprire">
+    <div class="stage-bg" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><b class="stage-light"></b><b class="stage-grain"></b></div>
+    <div class="journey-backword" aria-hidden="true">Margherita</div>
+    <div class="pizza-stage-inner">
+      <div class="journey-copy">
+        <h1 class="sr-only">Lievit’Amo. Un morso di Napoli, a Palocco.</h1>
+        <p class="journey-kicker" id="pizza-kicker">01 / L’INTRAMONTABILE</p>
+        <div class="journey-details" id="pizza-details">
+          <h2 id="pizza-name">Margherita<span>.</span></h2>
+          <p class="journey-line" id="pizza-line">Il primo amore non si scorda.</p>
+          <p class="journey-ingredients" id="pizza-ingredients">Pomodoro, fiordilatte di Agerola, basilico, olio EVO.</p>
+        </div>
+        <div class="journey-actions"><button class="button journey-add" id="pizza-add" data-feature-add="Margherita">La scelgo <span id="pizza-price">8,50 €</span><span aria-hidden="true">+</span></button></div>
+        <p class="journey-note">Sei incontri. Qual è il tuo colpo di fulmine?</p>
+      </div>
+      <div class="pizza-scene" id="pizza-scene" tabindex="0" role="group" aria-label="Esplora le pizze: scorri, trascina o usa le frecce della tastiera" aria-describedby="pizza-help">
+        <div class="pizza-wheel" id="pizza-wheel">
+          <div class="pz" data-pizza="0"><img src="assets/margherita.webp" alt="Margherita, immagine illustrativa" width="880" height="880" fetchpriority="high" draggable="false"></div>
+          <div class="pz" data-pizza="1" aria-hidden="true"><img src="assets/pistacchiosa-cutout.webp" alt="Pistacchiosa, immagine illustrativa" width="880" height="880" draggable="false"></div>
+          <div class="pz" data-pizza="2" aria-hidden="true"><img src="assets/lazzarella-cutout.webp" alt="Lazzarella, immagine illustrativa" width="880" height="880" draggable="false"></div>
+          <div class="pz" data-pizza="3" aria-hidden="true"><img src="assets/carbonara-cutout.webp" alt="Carbonara 2.0, immagine illustrativa" width="880" height="880" draggable="false"></div>
+          <div class="pz" data-pizza="4" aria-hidden="true"><img src="assets/diavola-cutout.webp" alt="Diavola, immagine illustrativa" width="880" height="880" draggable="false"></div>
+          <div class="pz" data-pizza="5" aria-hidden="true"><img src="assets/partenopea-cutout.webp" alt="La Partenopea, immagine illustrativa" width="880" height="880" draggable="false"></div>
+        </div>
+        <span class="pizza-tag tag-one" id="pizza-tag-one">fiordilatte<br><b>di Agerola</b></span>
+        <span class="pizza-tag tag-two" id="pizza-tag-two">basilico<br><b>e felicità</b></span>
+        <span class="pizza-bite" aria-hidden="true">un morso <i>e t’innamori.</i> <b>♡</b><svg viewBox="0 0 100 92"><path d="M3 89C29 86.5 64 67.6 95 6"/><circle cx="95" cy="6" r="3.5"/></svg></span>
+      </div>
+    </div>
+    <div class="journey-bottom">
+      <div class="pizza-picker" role="group" aria-label="Scegli una pizza">
+        <span class="pizza-picker-count" id="pizza-position" aria-hidden="true">01</span>
+        <button type="button" data-pizza-select="0" aria-pressed="true" aria-controls="pizza-details" aria-label="Margherita" title="Margherita" class="is-active"><span class="pizza-picker-track"><i></i></span></button>
+        <button type="button" data-pizza-select="1" aria-pressed="false" aria-controls="pizza-details" aria-label="Pistacchiosa" title="Pistacchiosa"><span class="pizza-picker-track"><i></i></span></button>
+        <button type="button" data-pizza-select="2" aria-pressed="false" aria-controls="pizza-details" aria-label="Lazzarella" title="Lazzarella"><span class="pizza-picker-track"><i></i></span></button>
+        <button type="button" data-pizza-select="3" aria-pressed="false" aria-controls="pizza-details" aria-label="Carbonara 2.0" title="Carbonara 2.0"><span class="pizza-picker-track"><i></i></span></button>
+        <button type="button" data-pizza-select="4" aria-pressed="false" aria-controls="pizza-details" aria-label="Diavola" title="Diavola"><span class="pizza-picker-track"><i></i></span></button>
+        <button type="button" data-pizza-select="5" aria-pressed="false" aria-controls="pizza-details" aria-label="La Partenopea" title="La Partenopea"><span class="pizza-picker-track"><i></i></span></button>
+        <span class="pizza-picker-count" aria-hidden="true">06</span>
+      </div>
+      <p class="journey-cue" id="pizza-help"><span aria-hidden="true">↓</span> Scorri o trascina</p>
+      <p class="journey-fineprint">Immagini illustrative <span aria-hidden="true">·</span> <button type="button" id="motion-toggle" aria-pressed="false">Pausa animazioni</button></p>
+    </div>
+    <div id="pizza-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</section>
+<div class="ticker" aria-hidden="true"><div>PIZZA FATTA CON AMORE <span>✳</span> FRIGGITORIA PARTENOPEA <span>✳</span> UN MORSO DI NAPOLI <span>✳</span> PIZZA FATTA CON AMORE <span>✳</span> FRIGGITORIA PARTENOPEA <span>✳</span> UN MORSO DI NAPOLI <span>✳</span></div></div>
+<section class="anima section-wrap reveal" id="anima">
+  <p class="eyebrow">01 / L’ANIMA PARTENOPEA</p>
+  <div class="anima-grid"><h2>La felicità ha<br>un <em>bordo alto.</em></h2><div><p class="lead">A Via Pindaro, un piccolo viaggio nei sapori di Napoli.</p><p>Dal fiordilatte di Agerola alla provola, dai friarielli ai crocchè: il menu di Lievit’Amo parla partenopeo. Ci sono i grandi classici, gli incontri più golosi e la friggitoria da mettere al centro della tavola.</p><a class="text-link" href="#menu">Trova il tuo prossimo morso <span>↗</span></a></div></div>
+  <div class="anima-details"><span><b>01.</b> Classiche che ami</span><span><b>02.</b> Gourmet da scoprire</span><span><b>03.</b> Fritti da condividere</span></div>
+</section>
+<section class="specials" id="speciali"><div class="section-wrap">
+  <div class="section-heading reveal"><div><p class="eyebrow">02 / TRE BUONI MOTIVI</p><h2>Colpo di <em>fulmine.</em></h2></div><p>La prima scelta è difficile.<br>La seconda fetta, molto meno.</p></div>
+  <div class="special-grid">
+    <article class="special-card reveal"><div class="special-image cream"><span class="special-number">01 / L’INTRAMONTABILE</span><img src="assets/margherita.webp" width="400" height="400" alt="Margherita, immagine illustrativa" loading="lazy"><span class="special-price">8,50 €</span></div><div class="special-copy"><h3>Margherita</h3><p>Pomodoro, fiordilatte di Agerola, basilico e olio extravergine. La semplicità che conquista.</p><button class="text-link" data-feature-add="Margherita">La scelgo <span>+</span></button></div></article>
+    <article class="special-card reveal"><div class="special-image pink"><span class="special-number">02 / LA GOLOSA</span><img src="assets/pistacchiosa-cutout.webp" width="400" height="400" alt="Pistacchiosa, immagine illustrativa" loading="lazy"><span class="special-price">11,50 €</span></div><div class="special-copy"><h3>Pistacchiosa</h3><p>Pistacchio di Bronte, mortadella Bologna IGP, ricotta e fiordilatte. Amore al primo assaggio.</p><button class="text-link" data-feature-add="Pistacchiosa">La scelgo <span>+</span></button></div></article>
+    <article class="special-card reveal"><div class="special-image sand"><span class="special-number">03 / LA DOPPIA COTTURA</span><img src="assets/lazzarella-cutout.webp" width="400" height="400" alt="Lazzarella, immagine illustrativa" loading="lazy"><span class="special-price">11,50 €</span></div><div class="special-copy"><h3>Lazzarella</h3><p>Prima fritta, poi al forno a legna. Amatriciana, guanciale croccante, pecorino e grana.</p><button class="text-link" data-feature-add="Lazzarella">La scelgo <span>+</span></button></div></article>
+  </div><p class="image-note">Immagini illustrative. Ingredienti completi e prezzi di riferimento nel menu.</p>
+</div></section>
+<section class="menu-section section-wrap" id="menu">
+  <div class="section-heading reveal"><div><p class="eyebrow">03 / A OGNUNO LA SUA</p><h2>Che pizza <em>ti va?</em></h2></div><p>Dalle rosse ai dolci.<br>Scegli, aggiungi, fatti venire fame.</p></div>
+  <div class="menu-tools"><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg><input id="menu-search" type="search" placeholder="Cerca una pizza o un ingrediente" autocomplete="off" aria-label="Cerca nel menu"></label><span id="menu-count" aria-live="polite"></span></div>
+  <div id="category-filters" class="category-filters" role="group" aria-label="Categorie del menu"></div>
+  <div id="menu-grid" class="menu-grid"></div><noscript><p>Per cercare e comporre la tua scelta, attiva JavaScript. Puoi sempre consultare il <a href="https://lievitamo-pizzeria-roma.it/">menu completo del locale</a>.</p></noscript>
+  <div class="load-more-wrap"><button id="load-more" class="button button-outline">Mostra altri piatti <span aria-hidden="true">+</span></button></div>
+  <div class="menu-notes"><p>Prezzi del <a href="https://lievitamo-pizzeria-roma.it/" target="_blank" rel="noopener noreferrer">menu online Just Eat</a>, consultato il 14 novembre 2026. Possono variare tra piattaforme e in negozio. Disponibilità e totale finale sono confermati dal locale o dal servizio scelto.</p><p><b>Allergie o intolleranze?</b> Prima di ordinare, chiedi al locale informazioni su allergeni e contaminazioni. Le descrizioni non sostituiscono il registro allergeni.</p></div>
+</section>
+<section class="delivery" id="ordina"><div class="section-wrap delivery-grid"><div class="delivery-copy reveal"><p class="eyebrow">04 / LA SERATA È SERVITA</p><h2>Tu metti<br>il divano.<br><em>Noi la pizza.</em></h2><p>Ritiro in pizzeria o consegna a domicilio.<br>La tua serata, il tuo modo di ordinare.</p><a class="button button-light" href="tel:+390669317882"><svg><use href="#phone"/></svg> Chiama la pizzeria</a><small>06 6931 7882</small></div><div class="delivery-options reveal"><article><span class="delivery-n">01</span><div><h3>Direttamente con noi</h3><p>Preferisci il ritiro o la consegna diretta? Chiama per concordare disponibilità, zona, tempi e costo.</p></div></article><article><span class="delivery-n">02</span><div><h3>Il tuo ordine online</h3><p>Scegli la piattaforma che preferisci e verifica la consegna al tuo indirizzo.</p><div class="platforms"><a href="https://glovoapp.com/it/it/dragona/stores/lievitamo-pizzeria-friggitoria-partenopea-dra" target="_blank" rel="noopener noreferrer">Glovo <span>↗</span></a><a href="https://www.justeat.it/restaurants-lievitamo---pizzeria-friggitoria-partenopea-00125/menu" target="_blank" rel="noopener noreferrer">Just Eat <span>↗</span></a></div></div></article><div class="delivery-scribble" aria-hidden="true">Ci vediamo<br>a cena! <span>♡</span></div></div></div></section>
+<section class="location section-wrap" id="dove"><div class="section-heading reveal"><div><p class="eyebrow">05 / CI TROVI QUI</p><h2>Un angolo di Napoli.<br><em>Nel tuo quartiere.</em></h2></div></div><div class="location-grid"><div class="address-card"><span class="location-tag"><svg><use href="#pin"/></svg> CASAL PALOCCO · ROMA</span><h3>Via Pindaro, 34</h3><p>00125 Roma<br>Nella zona dell’ex Drive-In.</p><a class="button" href="https://www.google.com/maps/search/?api=1&query=Lievit%27Amo%20Via%20Pindaro%2034%20Roma" target="_blank" rel="noopener noreferrer">Portami da Lievit’Amo <svg><use href="#arrow"/></svg></a><div class="address-bottom"><a href="tel:+390669317882">06 6931 7882</a><span>Asporto · Consegna</span></div><span class="address-illustration" aria-hidden="true">ciao!</span></div><div class="hours"><h3>Quando passare</h3><p class="hours-label">Orari di ritiro pubblicati su Just Eat</p><dl><div><dt>Lunedì</dt><dd>Chiuso</dd></div><div><dt>Martedì</dt><dd>18:30 – 21:30</dd></div><div><dt>Mercoledì e giovedì</dt><dd>12:00 – 13:45<br>18:30 – 21:45</dd></div><div><dt>Venerdì</dt><dd>19:00 – 21:30</dd></div><div><dt>Sabato</dt><dd>12:00 – 13:45<br>18:30 – 21:30</dd></div><div><dt>Domenica</dt><dd>18:30 – 21:45</dd></div></dl><p class="tiny-note">Gli orari di sala e consegna possono essere diversi. Chiama prima di passare.</p></div></div></section>
+<section class="faq section-wrap"><div><p class="eyebrow">ANCORA UN DUBBIO?</p><h2>Due parole<br>prima della <em>pizza.</em></h2></div><div><details><summary>Come posso ordinare?</summary><p>Chiama la pizzeria, oppure apri Glovo o Just Eat. La selezione che componi qui è un promemoria: puoi copiarla e usarla quando ordini. Da questa anteprima non vengono inviati ordini.</p></details><details><summary>Consegnate anche nella mia zona?</summary><p>Il menu online indica i CAP 00124, 00125, 00126 e 00127. Per l’indirizzo preciso, i tempi e il costo della consegna, verifica sulla piattaforma o telefona al locale.</p></details><details><summary>Posso chiedere modifiche o informazioni sugli allergeni?</summary><p>Sì, contatta direttamente il locale prima dell’ordine. In questa anteprima non vengono gestite varianti né richieste alimentari: ingredienti, disponibilità e possibilità di preparazione vanno confermati dalla pizzeria.</p></details><details><summary>I prezzi sono uguali su tutte le piattaforme?</summary><p>No, possono variare. Qui trovi i prezzi del menu collegato a Just Eat, consultato il 14 novembre 2026. Fa fede il prezzo confermato dal canale che scegli per ordinare.</p></details></div></section>
+</main>
+<footer><div class="section-wrap"><div class="footer-main"><a class="wordmark" href="#inizio">lievit<span>’</span>amo<small>PIZZERIA & FRIGGITORIA PARTENOPEA</small></a><span>Un morso di Napoli.<br>Con amore, a Palocco.</span><a href="#inizio" class="back-top" aria-label="Torna all’inizio">↑</a></div><div class="footer-bottom"><p>Proposta di sito non ufficiale realizzata per Lievit’Amo.<br>Immagini illustrative · Nessun ordine o pagamento viene raccolto qui.</p><div><a href="fonti.html">Fonti e informazioni sull’anteprima</a><span>Progetto di Mattia Fabietti · 2026</span></div></div></div></footer>
+<button id="basket-toggle" class="basket-toggle" aria-haspopup="dialog" aria-controls="basket-dialog"><svg><use href="#bag"/></svg><span>La tua scelta <b id="basket-count">0</b></span><strong id="basket-total">0,00 €</strong></button>
+<dialog id="basket-dialog" aria-labelledby="basket-title"><div class="basket-header"><div><p class="eyebrow">HAI SCELTO BENE</p><h2 id="basket-title">La tua <em>serata.</em></h2></div><button id="basket-close" class="close-button" aria-label="Chiudi riepilogo">×</button></div><p class="basket-info">Un promemoria da usare quando ordini. Non invia un ordine alla pizzeria.</p><p id="basket-empty">La tua serata comincia da una pizza. Sceglila dal menu.</p><div id="basket-items"></div><div class="basket-summary"><span>Totale indicativo prodotti</span><strong id="basket-subtotal">0,00 €</strong></div><p class="tiny-note">Esclusi consegna, supplementi e varianti. Prezzi e disponibilità da confermare al momento dell’ordine.</p><p id="basket-status" role="status" aria-live="polite"></p><button id="basket-copy" class="button">Copia la tua scelta <svg><use href="#arrow"/></svg></button><label for="order-text" class="sr-only">Riepilogo da copiare</label><textarea id="order-text" hidden readonly></textarea><div class="basket-bottom"><a class="text-link" href="tel:+390669317882">Chiama per ordinare ↗</a><button id="basket-clear" class="subtle-button">Svuota</button></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
+
+
